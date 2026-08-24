@@ -1,0 +1,215 @@
+IQ-TREE version 3.1.2 for Linux x86 64-bit built May 17 2026
+Developed by Bui Quang Minh, Thomas Wong, Nhan Ly-Trong, Huaiyan Ren
+Contributed by Lam-Tung Nguyen, Dominik Schrempf, Chris Bielow,
+Olga Chernomor, Michael Woodhams, Diep Thi Hoang, Heiko Schmidt
+
+Host:    vcompute349 (AVX512, FMA3, 125 GB RAM)
+Command: iqtree3 -s nematode2.phy -m LG+F+G+C60 -nt 16
+Seed:    288188 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Fri Aug  7 20:54:18 2026
+Kernel:  AVX+FMA - 16 threads (16 CPU cores detected)
+
+Reading alignment file nematode2.phy ... Phylip format detected
+Alignment most likely contains protein sequences
+Constructing alignment: done in 0.096097 secs using 1110% CPU
+WARNING: 5 sites contain only gaps or ambiguous characters.
+Alignment has 37 sequences with 35371 columns, 31066 distinct patterns
+19983 parsimony-informative, 4844 singleton sites, 10544 constant sites
+            Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.00635815 secs using 1353% CPU
+   1  Caenorhabd    0.49%    failed      0.90%
+   2  C0briggsae    7.85%    failed      0.83%
+   3  Ancylostom   32.33%    failed      0.01%
+   4  Pristionch   53.17%    failed      0.00%
+   5  Brugia_mal   39.48%    failed      0.00%
+   6  Ascaris0su   58.17%    failed      0.00%
+   7  Meloidogyn   32.40%    failed      0.04%
+   8  Heteroderi   25.10%    passed     13.12%
+   9  Strongyloi   32.34%    failed      0.00%
+  10  Trichoceph   51.77%    failed      0.00%
+  11  Coleoptera   56.91%    failed      0.00%
+  12  Apis0melli   51.29%    passed     59.00%
+  13  Siphonapte   72.76%    failed      0.00%
+  14  Bombyx0mor   23.44%    passed     25.07%
+  15  Drosophila    0.58%    failed      2.57%
+  16  Glossina0m   44.77%    passed     25.06%
+  17  Anopheles0    2.69%    failed      0.47%
+  18  Hemiptera0   54.27%    failed      0.00%
+  19  Crustacea0   48.27%    failed      0.00%
+  20  Chelicerat   52.22%    failed      0.00%
+  21  Echinoderm   22.63%    failed      4.87%
+  22  Cephalocho   52.37%    failed      0.00%
+  23  Urochordat    4.33%    failed      0.00%
+  24  Mammalia00    0.21%    failed      0.01%
+  25  Actinopter    5.50%    failed      0.63%
+  26  Neurospora    0.74%    failed      0.00%
+  27  Magnaporth    4.71%    failed      0.00%
+  28  Gibberella   20.23%    failed      0.00%
+  29  Eurotiomyc   39.14%    failed      0.00%
+  30  Candida0al    4.40%    failed      0.00%
+  31  Saccharomy    0.38%    failed      0.00%
+  32  Schizosacc    0.27%    failed      0.00%
+  33  Ustilago0m    8.20%    failed      0.00%
+  34  Homobasidi   12.03%    failed      0.00%
+  35  Cryptococc    3.73%    failed      0.00%
+  36  Glomales00   77.71%    failed      0.00%
+  37  Chytridiom   63.31%    failed      0.00%
+WARNING: 11 sequences contain more than 50% gaps/ambiguity
+****  TOTAL        28.65%  33 sequences failed composition chi2 test (p-value<5%; df=19)
+Checking for duplicate sequences: done in 0.015543 secs using 1306% CPU
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.228 seconds
+Model LG+F+G+C60 is alias for LG+F+G+POISSON+G+FMIX{C60pi1:1:0.0169698865,C60pi2:1:0.0211683374,C60pi3:1:0.0276589079,C60pi4:1:0.0065675964,C60pi5:1:0.0141221416,C60pi6:1:0.0068774834,C60pi7:1:0.0146909701,C60pi8:1:0.0067225777,C60pi9:1:0.0018396660,C60pi10:1:0.0102547197,C60pi11:1:0.0230896163,C60pi12:1:0.0057941033,C60pi13:1:0.0125394534,C60pi14:1:0.0204526478,C60pi15:1:0.0070629602,C60pi16:1:0.0117982741,C60pi17:1:0.0068334668,C60pi18:1:0.0433775839,C60pi19:1:0.0318278731,C60pi20:1:0.0222546108,C60pi21:1:0.0102264969,C60pi22:1:0.0150545891,C60pi23:1:0.0134159878,C60pi24:1:0.0148552065,C60pi25:1:0.0239111516,C60pi26:1:0.0128776278,C60pi27:1:0.0222318842,C60pi28:1:0.0247444742,C60pi29:1:0.0214274810,C60pi30:1:0.0115001882,C60pi31:1:0.0076017389,C60pi32:1:0.0130258568,C60pi33:1:0.0093701965,C60pi34:1:0.0467194264,C60pi35:1:0.0441940314,C60pi36:1:0.0322263154,C60pi37:1:0.0402999891,C60pi38:1:0.0150234227,C60pi39:1:0.0104589903,C60pi40:1:0.0214742395,C60pi41:1:0.0154957836,C60pi42:1:0.0101789953,C60pi43:1:0.0227980379,C60pi44:1:0.0123204539,C60pi45:1:0.0066777583,C60pi46:1:0.0004150083,C60pi47:1:0.0344385130,C60pi48:1:0.0113663379,C60pi49:1:0.0127143049,C60pi50:1:0.0124323741,C60pi51:1:0.0262124415,C60pi52:1:0.0064994957,C60pi53:1:0.0103203293,C60pi54:1:0.0142463512,C60pi55:1:0.0215600067,C60pi56:1:0.0199150700,C60pi57:1:0.0038964200,C60pi58:1:0.0113448855,C60pi59:1:0.0128595846,C60pi60:1:0.0117656776}
+WARNING: Your input class weight 0.000415008 is very small and may cause numerical issues
+
+NOTE: 43361 MB RAM (42 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -735345.832
+2. Current log-likelihood: -712877.805
+3. Current log-likelihood: -712655.421
+4. Current log-likelihood: -712654.852
+5. Current log-likelihood: -712653.883
+6. Current log-likelihood: -712653.142
+7. Current log-likelihood: -712652.814
+Optimal log-likelihood: -712652.730
+Mixture weights: 0.140 0.021 0.002 0.016 0.027 0.018 0.007 0.005 0.005 0.002 0.051 0.027 0.015 0.001 0.009 0.003 0.003 0.026 0.034 0.001 0.004 0.001 0.058 0.009 0.000 0.008 0.019 0.037 0.013 0.000 0.037 0.007 0.006 0.022 0.030 0.030 0.022 0.014 0.023 0.002 0.010 0.001 0.005 0.043 0.003 0.015 0.000 0.018 0.020 0.000 0.021 0.010 0.026 0.006 0.020 0.020 0.001 0.002 0.010 0.008 0.001
+Gamma shape alpha: 0.541
+Parameters optimization took 7 rounds (647.726 sec)
+WARNING: The mixture model might be overfitting because some mixture weights are estimated close to zero
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 0.0150299 secs using 1589% CPU
+Computing ML distances took 0.019025 sec (of wall-clock time) 0.289516 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 0.000293016 secs using 1516% CPU
+Constructing RapidNJ tree: done in 0.014976 secs using 541.8% CPU
+Computing RapidNJ tree took 0.015453 sec (of wall-clock time) 0.087444 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -713457.317
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 27.127 second
+Computing log-likelihood of 98 initial trees ... 2843.354 seconds
+Current best score: -712652.730
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+WARNING: The mixture model might be overfitting because some mixture weights are estimated close to zero
+BETTER TREE FOUND at iteration 1: -712624.196
+Iteration 10 / LogL: -712628.446 / Time: 2h:24m:39s
+Iteration 20 / LogL: -712634.472 / Time: 3h:42m:55s
+Finish initializing candidate tree set (2)
+Current best tree score: -712624.196 / CPU time: 12478.385
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Iteration 30 / LogL: -712629.260 / Time: 5h:10m:22s (12h:39m:53s left)
+Iteration 40 / LogL: -712627.860 / Time: 6h:32m:11s (10h:13m:25s left)
+Iteration 50 / LogL: -712637.350 / Time: 8h:3m:33s (8h:23m:17s left)
+Iteration 60 / LogL: -712624.459 / Time: 9h:35m:8s (6h:39m:40s left)
+Iteration 70 / LogL: -712626.021 / Time: 11h:2m:0s (4h:57m:25s left)
+Iteration 80 / LogL: -712652.672 / Time: 12h:30m:50s (3h:19m:35s left)
+Iteration 90 / LogL: -712627.598 / Time: 13h:50m:20s (1h:42m:37s left)
+Iteration 100 / LogL: -712624.496 / Time: 15h:26m:45s (0h:9m:21s left)
+TREE SEARCH COMPLETED AFTER 102 ITERATIONS / Time: 15h:42m:32s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -712624.196
+2. Current log-likelihood: -712623.833
+3. Current log-likelihood: -712623.623
+4. Current log-likelihood: -712623.492
+5. Current log-likelihood: -712623.434
+6. Current log-likelihood: -712623.170
+7. Current log-likelihood: -712622.999
+8. Current log-likelihood: -712622.874
+9. Current log-likelihood: -712622.796
+10. Current log-likelihood: -712622.590
+11. Current log-likelihood: -712622.464
+12. Current log-likelihood: -712622.323
+13. Current log-likelihood: -712622.224
+14. Current log-likelihood: -712622.067
+15. Current log-likelihood: -712621.969
+16. Current log-likelihood: -712621.822
+17. Current log-likelihood: -712621.728
+18. Current log-likelihood: -712621.586
+19. Current log-likelihood: -712621.497
+20. Current log-likelihood: -712621.359
+21. Current log-likelihood: -712621.274
+22. Current log-likelihood: -712621.140
+23. Current log-likelihood: -712621.058
+24. Current log-likelihood: -712620.928
+25. Current log-likelihood: -712620.851
+26. Current log-likelihood: -712620.724
+27. Current log-likelihood: -712620.649
+28. Current log-likelihood: -712620.526
+29. Current log-likelihood: -712620.455
+30. Current log-likelihood: -712620.335
+31. Current log-likelihood: -712620.267
+32. Current log-likelihood: -712620.150
+33. Current log-likelihood: -712620.085
+34. Current log-likelihood: -712619.971
+35. Current log-likelihood: -712619.908
+36. Current log-likelihood: -712619.798
+37. Current log-likelihood: -712619.738
+38. Current log-likelihood: -712619.629
+39. Current log-likelihood: -712619.572
+40. Current log-likelihood: -712619.466
+41. Current log-likelihood: -712619.410
+42. Current log-likelihood: -712619.308
+43. Current log-likelihood: -712619.255
+44. Current log-likelihood: -712619.155
+45. Current log-likelihood: -712619.104
+46. Current log-likelihood: -712619.006
+47. Current log-likelihood: -712618.958
+48. Current log-likelihood: -712618.862
+49. Current log-likelihood: -712618.815
+50. Current log-likelihood: -712618.722
+51. Current log-likelihood: -712618.679
+52. Current log-likelihood: -712618.585
+53. Current log-likelihood: -712618.542
+54. Current log-likelihood: -712618.453
+55. Current log-likelihood: -712618.416
+56. Current log-likelihood: -712618.325
+57. Current log-likelihood: -712618.286
+58. Current log-likelihood: -712618.201
+59. Current log-likelihood: -712618.169
+60. Current log-likelihood: -712618.080
+61. Current log-likelihood: -712618.044
+62. Current log-likelihood: -712617.962
+63. Current log-likelihood: -712617.936
+64. Current log-likelihood: -712617.847
+65. Current log-likelihood: -712617.815
+66. Current log-likelihood: -712617.737
+67. Current log-likelihood: -712617.715
+68. Current log-likelihood: -712617.628
+69. Current log-likelihood: -712617.598
+70. Current log-likelihood: -712617.524
+71. Current log-likelihood: -712617.509
+72. Current log-likelihood: -712617.421
+73. Current log-likelihood: -712617.393
+74. Current log-likelihood: -712617.323
+Optimal log-likelihood: -712617.313
+Mixture weights: 0.152 0.022 0.002 0.017 0.027 0.017 0.007 0.005 0.005 0.002 0.046 0.028 0.015 0.001 0.010 0.003 0.003 0.025 0.034 0.001 0.004 0.001 0.059 0.008 0.000 0.008 0.019 0.036 0.013 0.000 0.038 0.007 0.006 0.021 0.029 0.029 0.022 0.014 0.022 0.002 0.010 0.002 0.005 0.043 0.003 0.015 0.000 0.021 0.019 0.000 0.020 0.011 0.026 0.006 0.020 0.017 0.001 0.002 0.010 0.009 0.001
+Gamma shape alpha: 0.541
+Parameters optimization took 74 rounds (4014.663 sec)
+WARNING: The mixture model might be overfitting because some mixture weights are estimated close to zero
+BEST SCORE FOUND : -712617.313
+Total tree length: 7.666
+
+Total number of iterations: 102
+CPU time used for tree search: 882335.591 sec (245h:5m:35s)
+Wall-clock time used for tree search: 55654.529 sec (15h:27m:34s)
+Total CPU time used: 960084.526 sec (266h:41m:24s)
+Total wall-clock time used: 60566.715 sec (16h:49m:26s)
+
+Analysis results written to: 
+  IQ-TREE report:                nematode2.phy.iqtree
+  Maximum-likelihood tree:       nematode2.phy.treefile
+  Likelihood distances:          nematode2.phy.mldist
+  Screen log file:               nematode2.phy.log
+
+Date and Time: Sat Aug  8 13:43:45 2026

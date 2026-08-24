@@ -1,0 +1,138 @@
+IQ-TREE version 3.1.2 for Linux x86 64-bit built May 17 2026
+Developed by Bui Quang Minh, Thomas Wong, Nhan Ly-Trong, Huaiyan Ren
+Contributed by Lam-Tung Nguyen, Dominik Schrempf, Chris Bielow,
+Olga Chernomor, Michael Woodhams, Diep Thi Hoang, Heiko Schmidt
+
+Host:    vcompute261 (AVX512, FMA3, 125 GB RAM)
+Command: iqtree3 -s nematoda_sim_1.fa -m Poisson+G4 -fs nema2.sitefreq -nt 32 -pre nematoda_sim_1_pmsf_
+Seed:    707119 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Mon Aug 10 09:39:00 2026
+Kernel:  AVX+FMA - 32 threads (32 CPU cores detected)
+
+Reading alignment file nematoda_sim_1.fa ... Fasta format detected
+Reading fasta file: done in 0.0103722 secs using 83.02% CPU
+Alignment most likely contains protein sequences
+Constructing alignment: done in 0.0867739 secs using 2511% CPU
+WARNING: 5 sites contain only gaps or ambiguous characters.
+Alignment has 37 sequences with 35371 columns, 31998 distinct patterns
+20502 parsimony-informative, 5045 singleton sites, 9824 constant sites
+            Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.0024159 secs using 2663% CPU
+   1  Caenorhabd    0.49%    passed     92.69%
+   2  C0briggsae    7.85%    passed     92.00%
+   3  Ancylostom   32.33%    passed     98.50%
+   4  Pristionch   53.17%    passed     87.68%
+   5  Brugia_mal   39.48%    passed     99.56%
+   6  Ascaris0su   58.17%    passed     84.88%
+   7  Meloidogyn   32.40%    passed     97.51%
+   8  Heteroderi   25.10%    passed     69.50%
+   9  Strongyloi   32.34%    passed     91.98%
+  10  Trichoceph   51.77%    passed     79.32%
+  11  Coleoptera   56.91%    passed     77.08%
+  12  Apis0melli   51.29%    passed     99.62%
+  13  Siphonapte   72.76%    passed     85.81%
+  14  Bombyx0mor   23.44%    passed     97.01%
+  15  Drosophila    0.58%    passed     98.12%
+  16  Glossina0m   44.77%    passed     98.48%
+  17  Anopheles0    2.69%    passed     99.55%
+  18  Hemiptera0   54.27%    passed     67.45%
+  19  Crustacea0   48.27%    passed     98.51%
+  20  Chelicerat   52.22%    passed     76.95%
+  21  Echinoderm   22.63%    passed     86.81%
+  22  Cephalocho   52.37%    passed     90.66%
+  23  Urochordat    4.33%    passed     97.99%
+  24  Mammalia00    0.21%    passed     99.99%
+  25  Actinopter    5.50%    passed     99.90%
+  26  Neurospora    0.74%    passed     96.83%
+  27  Magnaporth    4.71%    passed     97.79%
+  28  Gibberella   20.23%    passed     85.73%
+  29  Eurotiomyc   39.14%    passed     89.54%
+  30  Candida0al    4.40%    passed     98.21%
+  31  Saccharomy    0.38%    passed     91.91%
+  32  Schizosacc    0.27%    passed     91.07%
+  33  Ustilago0m    8.20%    passed     91.58%
+  34  Homobasidi   12.03%    passed     92.64%
+  35  Cryptococc    3.73%    passed     97.53%
+  36  Glomales00   77.71%    passed     44.59%
+  37  Chytridiom   63.31%    passed     73.01%
+WARNING: 11 sequences contain more than 50% gaps/ambiguity
+****  TOTAL        28.65%  0 sequences failed composition chi2 test (p-value<5%; df=19)
+
+Reading site-specific state frequency file nema2.sitefreq ...
+Regrouping alignment sites...
+35371 distinct per-site state frequency vectors detected
+Checking for duplicate sequences: done in 0.00811005 secs using 2785% CPU
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.154 seconds
+
+NOTE: 1138 MB RAM (1 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -901871.802
+2. Current log-likelihood: -871331.247
+3. Current log-likelihood: -870349.276
+4. Current log-likelihood: -870332.951
+5. Current log-likelihood: -870332.776
+Optimal log-likelihood: -870332.771
+Gamma shape alpha: 0.367
+Parameters optimization took 5 rounds (24.694 sec)
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 7.28751 secs using 1459% CPU
+Computing ML distances took 7.301256 sec (of wall-clock time) 106.664584 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 0.00929618 secs using 517.3% CPU
+Constructing RapidNJ tree: done in 0.028842 secs using 1540% CPU
+Computing RapidNJ tree took 0.043474 sec (of wall-clock time) 0.609919 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -871556.555
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 19.274 second
+Computing log-likelihood of 98 initial trees ... 126.810 seconds
+Current best score: -870332.771
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -869932.242
+Iteration 10 / LogL: -869933.142 / Time: 0h:5m:44s
+Iteration 20 / LogL: -869937.702 / Time: 0h:8m:28s
+Finish initializing candidate tree set (1)
+Current best tree score: -869932.242 / CPU time: 468.834
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Iteration 30 / LogL: -869940.440 / Time: 0h:11m:29s (0h:28m:7s left)
+Iteration 40 / LogL: -869932.602 / Time: 0h:14m:57s (0h:23m:23s left)
+Iteration 50 / LogL: -869940.956 / Time: 0h:17m:54s (0h:18m:38s left)
+Iteration 60 / LogL: -869933.551 / Time: 0h:20m:51s (0h:14m:29s left)
+Iteration 70 / LogL: -869933.592 / Time: 0h:23m:49s (0h:10m:41s left)
+Iteration 80 / LogL: -869948.961 / Time: 0h:26m:33s (0h:7m:3s left)
+Iteration 90 / LogL: -869932.749 / Time: 0h:29m:28s (0h:3m:38s left)
+Iteration 100 / LogL: -869933.143 / Time: 0h:32m:9s (0h:0m:19s left)
+TREE SEARCH COMPLETED AFTER 102 ITERATIONS / Time: 0h:32m:37s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -869932.242
+Optimal log-likelihood: -869932.241
+Gamma shape alpha: 0.367
+Parameters optimization took 1 rounds (3.406 sec)
+BEST SCORE FOUND : -869932.241
+Total tree length: 5.085
+
+Total number of iterations: 102
+CPU time used for tree search: 59704.596 sec (16h:35m:4s)
+Wall-clock time used for tree search: 1917.446 sec (0h:31m:57s)
+Total CPU time used: 60847.638 sec (16h:54m:7s)
+Total wall-clock time used: 1960.515 sec (0h:32m:40s)
+
+Analysis results written to: 
+  IQ-TREE report:                nematoda_sim_1_pmsf_.iqtree
+  Maximum-likelihood tree:       nematoda_sim_1_pmsf_.treefile
+  Likelihood distances:          nematoda_sim_1_pmsf_.mldist
+  Screen log file:               nematoda_sim_1_pmsf_.log
+
+Date and Time: Mon Aug 10 10:11:42 2026

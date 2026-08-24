@@ -1,0 +1,236 @@
+IQ-TREE 3.1.2 built May 17 2026
+
+Input file name: nematoda_sim_39.fa
+Type of analysis: tree reconstruction
+Random seed number: 548870
+
+REFERENCES
+----------
+
+To cite IQ-TREE 3 please use:
+
+Thomas K.F. Wong, Nhan Ly-Trong, Huaiyan Ren, Hector Banos, Andrew J. Roger,
+Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman, Matthew W. Hahn,
+Gavin Huttley, Robert Lanfear, Bui Quang Minh (2025)
+IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
+Submitted.
+
+SEQUENCE ALIGNMENT
+------------------
+
+NOTE: Alignment sequence type is auto-detected. If in doubt, specify it via -st option.
+Input data: 37 sequences with 35371 amino-acid sites
+Number of constant sites: 9837 (= 27.8109% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 9837 (= 27.8109% of all sites)
+Number of parsimony informative sites: 20723
+Number of distinct site patterns: 31925
+
+SUBSTITUTION PROCESS
+--------------------
+
+Mixture model of substitution: MIX{LG+F+F,LG+FC60pi1,LG+FC60pi2,LG+FC60pi3,LG+FC60pi4,LG+FC60pi5,LG+FC60pi6,LG+FC60pi7,LG+FC60pi8,LG+FC60pi9,LG+FC60pi10,LG+FC60pi11,LG+FC60pi12,LG+FC60pi13,LG+FC60pi14,LG+FC60pi15,LG+FC60pi16,LG+FC60pi17,LG+FC60pi18,LG+FC60pi19,LG+FC60pi20,LG+FC60pi21,LG+FC60pi22,LG+FC60pi23,LG+FC60pi24,LG+FC60pi25,LG+FC60pi26,LG+FC60pi27,LG+FC60pi28,LG+FC60pi29,LG+FC60pi30,LG+FC60pi31,LG+FC60pi32,LG+FC60pi33,LG+FC60pi34,LG+FC60pi35,LG+FC60pi36,LG+FC60pi37,LG+FC60pi38,LG+FC60pi39,LG+FC60pi40,LG+FC60pi41,LG+FC60pi42,LG+FC60pi43,LG+FC60pi44,LG+FC60pi45,LG+FC60pi46,LG+FC60pi47,LG+FC60pi48,LG+FC60pi49,LG+FC60pi50,LG+FC60pi51,LG+FC60pi52,LG+FC60pi53,LG+FC60pi54,LG+FC60pi55,LG+FC60pi56,LG+FC60pi57,LG+FC60pi58,LG+FC60pi59,LG+FC60pi60}+G4
+
+  No  Component      Rate    Weight   Parameters
+   1  LG+F          1.0000   0.1493   LG+F+F
+   2  LG+FC60pi1    1.0000   0.0171   LG+FC60pi1
+   3  LG+FC60pi2    1.0000   0.0020   LG+FC60pi2
+   4  LG+FC60pi3    1.0000   0.0139   LG+FC60pi3
+   5  LG+FC60pi4    1.0000   0.0268   LG+FC60pi4
+   6  LG+FC60pi5    1.0000   0.0168   LG+FC60pi5
+   7  LG+FC60pi6    1.0000   0.0063   LG+FC60pi6
+   8  LG+FC60pi7    1.0000   0.0028   LG+FC60pi7
+   9  LG+FC60pi8    1.0000   0.0046   LG+FC60pi8
+  10  LG+FC60pi9    1.0000   0.0013   LG+FC60pi9
+  11  LG+FC60pi10   1.0000   0.0443   LG+FC60pi10
+  12  LG+FC60pi11   1.0000   0.0247   LG+FC60pi11
+  13  LG+FC60pi12   1.0000   0.0144   LG+FC60pi12
+  14  LG+FC60pi13   1.0000   0.0005   LG+FC60pi13
+  15  LG+FC60pi14   1.0000   0.0085   LG+FC60pi14
+  16  LG+FC60pi15   1.0000   0.0022   LG+FC60pi15
+  17  LG+FC60pi16   1.0000   0.0072   LG+FC60pi16
+  18  LG+FC60pi17   1.0000   0.0268   LG+FC60pi17
+  19  LG+FC60pi18   1.0000   0.0351   LG+FC60pi18
+  20  LG+FC60pi19   1.0000   0.0037   LG+FC60pi19
+  21  LG+FC60pi20   1.0000   0.0032   LG+FC60pi20
+  22  LG+FC60pi21   1.0000   0.0019   LG+FC60pi21
+  23  LG+FC60pi22   1.0000   0.0645   LG+FC60pi22
+  24  LG+FC60pi23   1.0000   0.0063   LG+FC60pi23
+  25  LG+FC60pi24   1.0000   0.0000   LG+FC60pi24
+  26  LG+FC60pi25   1.0000   0.0074   LG+FC60pi25
+  27  LG+FC60pi26   1.0000   0.0227   LG+FC60pi26
+  28  LG+FC60pi27   1.0000   0.0397   LG+FC60pi27
+  29  LG+FC60pi28   1.0000   0.0142   LG+FC60pi28
+  30  LG+FC60pi29   1.0000   0.0000   LG+FC60pi29
+  31  LG+FC60pi30   1.0000   0.0316   LG+FC60pi30
+  32  LG+FC60pi31   1.0000   0.0044   LG+FC60pi31
+  33  LG+FC60pi32   1.0000   0.0052   LG+FC60pi32
+  34  LG+FC60pi33   1.0000   0.0237   LG+FC60pi33
+  35  LG+FC60pi34   1.0000   0.0305   LG+FC60pi34
+  36  LG+FC60pi35   1.0000   0.0282   LG+FC60pi35
+  37  LG+FC60pi36   1.0000   0.0214   LG+FC60pi36
+  38  LG+FC60pi37   1.0000   0.0129   LG+FC60pi37
+  39  LG+FC60pi38   1.0000   0.0226   LG+FC60pi38
+  40  LG+FC60pi39   1.0000   0.0026   LG+FC60pi39
+  41  LG+FC60pi40   1.0000   0.0096   LG+FC60pi40
+  42  LG+FC60pi41   1.0000   0.0023   LG+FC60pi41
+  43  LG+FC60pi42   1.0000   0.0054   LG+FC60pi42
+  44  LG+FC60pi43   1.0000   0.0406   LG+FC60pi43
+  45  LG+FC60pi44   1.0000   0.0000   LG+FC60pi44
+  46  LG+FC60pi45   1.0000   0.0155   LG+FC60pi45
+  47  LG+FC60pi46   1.0000   0.0000   LG+FC60pi46
+  48  LG+FC60pi47   1.0000   0.0209   LG+FC60pi47
+  49  LG+FC60pi48   1.0000   0.0206   LG+FC60pi48
+  50  LG+FC60pi49   1.0000   0.0000   LG+FC60pi49
+  51  LG+FC60pi50   1.0000   0.0286   LG+FC60pi50
+  52  LG+FC60pi51   1.0000   0.0117   LG+FC60pi51
+  53  LG+FC60pi52   1.0000   0.0267   LG+FC60pi52
+  54  LG+FC60pi53   1.0000   0.0050   LG+FC60pi53
+  55  LG+FC60pi54   1.0000   0.0195   LG+FC60pi54
+  56  LG+FC60pi55   1.0000   0.0235   LG+FC60pi55
+  57  LG+FC60pi56   1.0000   0.0000   LG+FC60pi56
+  58  LG+FC60pi57   1.0000   0.0001   LG+FC60pi57
+  59  LG+FC60pi58   1.0000   0.0113   LG+FC60pi58
+  60  LG+FC60pi59   1.0000   0.0066   LG+FC60pi59
+  61  LG+FC60pi60   1.0000   0.0008   LG+FC60pi60
+
+Model for mixture component 1: LG+F
+State frequencies: (empirical counts from alignment)
+
+  pi(A) = 0.0921
+  pi(R) = 0.0589
+  pi(N) = 0.0373
+  pi(D) = 0.0443
+  pi(C) = 0.0172
+  pi(Q) = 0.0404
+  pi(E) = 0.0561
+  pi(G) = 0.0650
+  pi(H) = 0.0238
+  pi(I) = 0.0682
+  pi(L) = 0.0898
+  pi(K) = 0.0604
+  pi(M) = 0.0270
+  pi(F) = 0.0327
+  pi(P) = 0.0380
+  pi(S) = 0.0687
+  pi(T) = 0.0600
+  pi(W) = 0.0078
+  pi(Y) = 0.0301
+  pi(V) = 0.0820
+
+
+Model of rate heterogeneity: Gamma with 4 categories
+Gamma shape alpha: 0.5298
+
+ Category  Relative_rate  Proportion
+  1         0.0390         0.2500
+  2         0.2709         0.2500
+  3         0.8408         0.2500
+  4         2.8492         0.2500
+Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -718368.0313 (s.e. 3102.4344)
+Unconstrained log-likelihood (without tree): -363831.5136
+Number of free parameters (#branches + #model parameters): 151
+Akaike information criterion (AIC) score: 1437038.0626
+Corrected Akaike information criterion (AICc) score: 1437039.3660
+Bayesian information criterion (BIC) score: 1438317.5834
+
+Total tree length (sum of branch lengths): 7.4975
+Sum of internal branch lengths: 2.1761 (29.0239% of tree length)
+
+NOTE: Tree is UNROOTED although outgroup taxon 'Caenorhabd' is drawn at root
+
++--Caenorhabd
+|
++--C0briggsae
+|
+|   +--Ancylostom
++---|
+    |  +-----Pristionch
+    +--|
+       |     +--Brugia_mal
+       |  +--|
+       |  |  +--Ascaris0su
+       +--|
+          |          +----Meloidogyn
+          |     +----|
+          |     |    +---Heteroderi
+          |  +--|
+          |  |  +-----------Strongyloi
+          +--|
+             |     +-------------Trichoceph
+             +-----|
+                   |                     +--Coleoptera
+                   |                  +--|
+                   |                  |  +--Apis0melli
+                   |               +--|
+                   |               |  |  +--Siphonapte
+                   |               |  +--|
+                   |               |     +---Bombyx0mor
+                   |            +--|
+                   |            |  |     +--Drosophila
+                   |            |  |  +--|
+                   |            |  |  |  +--Glossina0m
+                   |            |  +--|
+                   |            |     +---Anopheles0
+                   |         +--|
+                   |         |  +-------Hemiptera0
+                   |      +--|
+                   |      |  +---------Crustacea0
+                   |   +--|
+                   |   |  +------Chelicerat
+                   +---|
+                       |     +-------Echinoderm
+                       |  +--|
+                       |  |  |  +------Cephalocho
+                       |  |  +--|
+                       |  |     |  +---------Urochordat
+                       |  |     +--|
+                       |  |        |   +--Mammalia00
+                       |  |        +---|
+                       |  |            +--Actinopter
+                       +--|
+                          |                                  +--Neurospora
+                          |                               +--|
+                          |                               |  +--Magnaporth
+                          |                            +--|
+                          |                            |  +---Gibberella
+                          |                       +----|
+                          |                       |    +----Eurotiomyc
+                          |                    +--|
+                          |                    |  |       +-----Candida0al
+                          |                    |  +-------|
+                          |                    |          +------Saccharomy
+                          |                 +--|
+                          |                 |  +------------Schizosacc
+                          |              +--|
+                          |              |  |  +---------Ustilago0m
+                          |              |  +--|
+                          |              |     |  +-----Homobasidi
+                          |              |     +--|
+                          |              |        +---------Cryptococc
+                          |           +--|
+                          |           |  +-------Glomales00
+                          +-----------|
+                                      +--------------Chytridiom
+
+Tree in newick format:
+
+(Caenorhabd:0.0174413405,C0briggsae:0.0160739436,(Ancylostom:0.0765720607,(Pristionch:0.1444899716,((Brugia_mal:0.0769937629,Ascaris0su:0.0551615375):0.0605549508,(((Meloidogyn:0.1355147054,Heteroderi:0.1153168034):0.1166353479,Strongyloi:0.2853502729):0.0303281823,(Trichoceph:0.3271769080,(((((((Coleoptera:0.0893665042,Apis0melli:0.0876410112):0.0149727818,(Siphonapte:0.0652267587,Bombyx0mor:0.1090039523):0.0132329764):0.0159083551,((Drosophila:0.0518562512,Glossina0m:0.0616781578):0.0636104781,Anopheles0:0.1076467698):0.0483380502):0.0131547890,Hemiptera0:0.1877770480):0.0499818456,Crustacea0:0.2441155563):0.0254704232,Chelicerat:0.1667227722):0.0220675480,((Echinoderm:0.1978336758,(Cephalocho:0.1645052667,(Urochordat:0.2391163354,(Mammalia00:0.0370495445,Actinopter:0.0513949133):0.0956125308):0.0174732948):0.0117526413):0.0227726103,((((((((Neurospora:0.0809410670,Magnaporth:0.0882236720):0.0213034218,Gibberella:0.0968368960):0.0601564132,Eurotiomyc:0.1173337164):0.1373065702,(Candida0al:0.1565696079,Saccharomy:0.1810392861):0.1975239408):0.0597132532,Schizosacc:0.3000972432):0.0702119228,(Ustilago0m:0.2348701456,(Homobasidi:0.1605799773,Cryptococc:0.2421392077):0.0438580817):0.0887241137):0.0500511122,Glomales00:0.2004756957):0.0324363811,Chytridiom:0.3513234540):0.2996996535):0.0243868749):0.1084732722):0.1454223991):0.0233437027):0.0375858068):0.0586156224):0.0954016564);
+
+ALISIM COMMAND
+--------------
+Currently, we only support exporting AliSim commands automatically from the analysis for common models of DNA, Protein, Binary, and Morphological data. To simulate data from other models (mixture, lie-markov, etc), please refer to the User Manual of AliSim. Thanks!
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Mon Aug 10 07:41:33 2026
+Total CPU time used: 1.26782e+06 seconds (352h:10m:20s)
+Total wall-clock time used: 40358.8 seconds (11h:12m:38s)
+

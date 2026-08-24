@@ -1,0 +1,161 @@
+IQ-TREE version 3.1.2 for Linux x86 64-bit built May 17 2026
+Developed by Bui Quang Minh, Thomas Wong, Nhan Ly-Trong, Huaiyan Ren
+Contributed by Lam-Tung Nguyen, Dominik Schrempf, Chris Bielow,
+Olga Chernomor, Michael Woodhams, Diep Thi Hoang, Heiko Schmidt
+
+Host:    vcompute317 (AVX512, FMA3, 125 GB RAM)
+Command: iqtree3 -s nematoda_sim_1.fa -m LG+F+G+C60 -nt 32 -pre nematoda_sim_1_tree
+Seed:    589360 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Sun Aug  9 20:28:54 2026
+Kernel:  AVX+FMA - 32 threads (32 CPU cores detected)
+
+Reading alignment file nematoda_sim_1.fa ... Fasta format detected
+Reading fasta file: done in 0.00822902 secs using 84.37% CPU
+Alignment most likely contains protein sequences
+Constructing alignment: done in 0.0995929 secs using 2233% CPU
+WARNING: 5 sites contain only gaps or ambiguous characters.
+Alignment has 37 sequences with 35371 columns, 31998 distinct patterns
+20502 parsimony-informative, 5045 singleton sites, 9824 constant sites
+            Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.00141001 secs using 2974% CPU
+   1  Caenorhabd    0.49%    passed     92.69%
+   2  C0briggsae    7.85%    passed     92.00%
+   3  Ancylostom   32.33%    passed     98.50%
+   4  Pristionch   53.17%    passed     87.68%
+   5  Brugia_mal   39.48%    passed     99.56%
+   6  Ascaris0su   58.17%    passed     84.88%
+   7  Meloidogyn   32.40%    passed     97.51%
+   8  Heteroderi   25.10%    passed     69.50%
+   9  Strongyloi   32.34%    passed     91.98%
+  10  Trichoceph   51.77%    passed     79.32%
+  11  Coleoptera   56.91%    passed     77.08%
+  12  Apis0melli   51.29%    passed     99.62%
+  13  Siphonapte   72.76%    passed     85.81%
+  14  Bombyx0mor   23.44%    passed     97.01%
+  15  Drosophila    0.58%    passed     98.12%
+  16  Glossina0m   44.77%    passed     98.48%
+  17  Anopheles0    2.69%    passed     99.55%
+  18  Hemiptera0   54.27%    passed     67.45%
+  19  Crustacea0   48.27%    passed     98.51%
+  20  Chelicerat   52.22%    passed     76.95%
+  21  Echinoderm   22.63%    passed     86.81%
+  22  Cephalocho   52.37%    passed     90.66%
+  23  Urochordat    4.33%    passed     97.99%
+  24  Mammalia00    0.21%    passed     99.99%
+  25  Actinopter    5.50%    passed     99.90%
+  26  Neurospora    0.74%    passed     96.83%
+  27  Magnaporth    4.71%    passed     97.79%
+  28  Gibberella   20.23%    passed     85.73%
+  29  Eurotiomyc   39.14%    passed     89.54%
+  30  Candida0al    4.40%    passed     98.21%
+  31  Saccharomy    0.38%    passed     91.91%
+  32  Schizosacc    0.27%    passed     91.07%
+  33  Ustilago0m    8.20%    passed     91.58%
+  34  Homobasidi   12.03%    passed     92.64%
+  35  Cryptococc    3.73%    passed     97.53%
+  36  Glomales00   77.71%    passed     44.59%
+  37  Chytridiom   63.31%    passed     73.01%
+WARNING: 11 sequences contain more than 50% gaps/ambiguity
+****  TOTAL        28.65%  0 sequences failed composition chi2 test (p-value<5%; df=19)
+Checking for duplicate sequences: done in 0.00477409 secs using 2829% CPU
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.187 seconds
+Model LG+F+G+C60 is alias for LG+F+G+POISSON+G+FMIX{C60pi1:1:0.0169698865,C60pi2:1:0.0211683374,C60pi3:1:0.0276589079,C60pi4:1:0.0065675964,C60pi5:1:0.0141221416,C60pi6:1:0.0068774834,C60pi7:1:0.0146909701,C60pi8:1:0.0067225777,C60pi9:1:0.0018396660,C60pi10:1:0.0102547197,C60pi11:1:0.0230896163,C60pi12:1:0.0057941033,C60pi13:1:0.0125394534,C60pi14:1:0.0204526478,C60pi15:1:0.0070629602,C60pi16:1:0.0117982741,C60pi17:1:0.0068334668,C60pi18:1:0.0433775839,C60pi19:1:0.0318278731,C60pi20:1:0.0222546108,C60pi21:1:0.0102264969,C60pi22:1:0.0150545891,C60pi23:1:0.0134159878,C60pi24:1:0.0148552065,C60pi25:1:0.0239111516,C60pi26:1:0.0128776278,C60pi27:1:0.0222318842,C60pi28:1:0.0247444742,C60pi29:1:0.0214274810,C60pi30:1:0.0115001882,C60pi31:1:0.0076017389,C60pi32:1:0.0130258568,C60pi33:1:0.0093701965,C60pi34:1:0.0467194264,C60pi35:1:0.0441940314,C60pi36:1:0.0322263154,C60pi37:1:0.0402999891,C60pi38:1:0.0150234227,C60pi39:1:0.0104589903,C60pi40:1:0.0214742395,C60pi41:1:0.0154957836,C60pi42:1:0.0101789953,C60pi43:1:0.0227980379,C60pi44:1:0.0123204539,C60pi45:1:0.0066777583,C60pi46:1:0.0004150083,C60pi47:1:0.0344385130,C60pi48:1:0.0113663379,C60pi49:1:0.0127143049,C60pi50:1:0.0124323741,C60pi51:1:0.0262124415,C60pi52:1:0.0064994957,C60pi53:1:0.0103203293,C60pi54:1:0.0142463512,C60pi55:1:0.0215600067,C60pi56:1:0.0199150700,C60pi57:1:0.0038964200,C60pi58:1:0.0113448855,C60pi59:1:0.0128595846,C60pi60:1:0.0117656776}
+WARNING: Your input class weight 0.000415008 is very small and may cause numerical issues
+
+NOTE: 44661 MB RAM (43 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -743320.073
+2. Current log-likelihood: -719750.952
+3. Current log-likelihood: -719552.157
+4. Current log-likelihood: -719550.513
+5. Current log-likelihood: -719548.962
+6. Current log-likelihood: -719547.746
+7. Current log-likelihood: -719547.270
+8. Current log-likelihood: -719546.648
+9. Current log-likelihood: -719546.499
+10. Current log-likelihood: -719546.034
+11. Current log-likelihood: -719545.665
+12. Current log-likelihood: -719545.348
+13. Current log-likelihood: -719544.971
+14. Current log-likelihood: -719544.817
+15. Current log-likelihood: -719544.616
+16. Current log-likelihood: -719544.130
+Optimal log-likelihood: -719544.038
+Mixture weights: 0.161 0.020 0.002 0.012 0.025 0.015 0.006 0.005 0.005 0.001 0.044 0.025 0.014 0.001 0.013 0.002 0.005 0.023 0.034 0.004 0.001 0.001 0.064 0.006 0.000 0.007 0.023 0.034 0.018 0.001 0.033 0.005 0.005 0.025 0.029 0.028 0.022 0.013 0.030 0.002 0.009 0.001 0.003 0.039 0.000 0.014 0.000 0.015 0.017 0.000 0.027 0.012 0.020 0.006 0.019 0.024 0.001 0.002 0.015 0.007 0.001
+Gamma shape alpha: 0.528
+Parameters optimization took 16 rounds (672.312 sec)
+WARNING: The mixture model might be overfitting because some mixture weights are estimated close to zero
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 0.01103 secs using 2981% CPU
+Computing ML distances took 0.017508 sec (of wall-clock time) 0.483710 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 0.000604868 secs using 3057% CPU
+Constructing RapidNJ tree: done in 0.02371 secs using 1498% CPU
+Computing RapidNJ tree took 0.024455 sec (of wall-clock time) 0.378480 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -720227.687
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 18.652 second
+Computing log-likelihood of 98 initial trees ... 1909.532 seconds
+Current best score: -719544.038
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+WARNING: The mixture model might be overfitting because some mixture weights are estimated close to zero
+BETTER TREE FOUND at iteration 1: -719264.013
+Iteration 10 / LogL: -719264.687 / Time: 1h:33m:32s
+Iteration 20 / LogL: -719266.171 / Time: 2h:21m:20s
+Finish initializing candidate tree set (1)
+Current best tree score: -719264.013 / CPU time: 7694.375
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Iteration 30 / LogL: -719267.191 / Time: 3h:13m:46s (7h:54m:25s left)
+Iteration 40 / LogL: -719276.841 / Time: 4h:4m:37s (6h:22m:36s left)
+Iteration 50 / LogL: -719275.449 / Time: 5h:1m:46s (5h:14m:5s left)
+Iteration 60 / LogL: -719277.960 / Time: 6h:2m:50s (4h:12m:8s left)
+Iteration 70 / LogL: -719270.729 / Time: 6h:57m:31s (3h:7m:34s left)
+Iteration 80 / LogL: -719267.393 / Time: 7h:45m:15s (2h:3m:40s left)
+Iteration 90 / LogL: -719272.004 / Time: 8h:39m:50s (1h:4m:14s left)
+Iteration 100 / LogL: -719264.805 / Time: 9h:36m:11s (0h:5m:49s left)
+TREE SEARCH COMPLETED AFTER 102 ITERATIONS / Time: 9h:44m:46s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -719264.013
+2. Current log-likelihood: -719263.832
+3. Current log-likelihood: -719263.618
+4. Current log-likelihood: -719263.469
+5. Current log-likelihood: -719263.388
+6. Current log-likelihood: -719263.368
+7. Current log-likelihood: -719263.249
+8. Current log-likelihood: -719263.033
+9. Current log-likelihood: -719262.961
+10. Current log-likelihood: -719262.899
+Optimal log-likelihood: -719262.893
+Mixture weights: 0.164 0.020 0.002 0.013 0.025 0.015 0.006 0.005 0.005 0.001 0.044 0.024 0.014 0.001 0.013 0.002 0.005 0.023 0.034 0.004 0.001 0.001 0.065 0.006 0.000 0.007 0.024 0.035 0.018 0.000 0.033 0.005 0.005 0.026 0.029 0.028 0.022 0.012 0.030 0.002 0.009 0.001 0.003 0.039 0.000 0.014 0.000 0.016 0.017 0.000 0.027 0.012 0.021 0.006 0.019 0.023 0.001 0.002 0.015 0.007 0.001
+Gamma shape alpha: 0.528
+Parameters optimization took 10 rounds (293.985 sec)
+WARNING: The mixture model might be overfitting because some mixture weights are estimated close to zero
+BEST SCORE FOUND : -719262.893
+Total tree length: 7.518
+
+Total number of iterations: 102
+CPU time used for tree search: 1081044.266 sec (300h:17m:24s)
+Wall-clock time used for tree search: 34300.159 sec (9h:31m:40s)
+Total CPU time used: 1115246.491 sec (309h:47m:26s)
+Total wall-clock time used: 35380.319 sec (9h:49m:40s)
+
+Analysis results written to: 
+  IQ-TREE report:                nematoda_sim_1_tree.iqtree
+  Maximum-likelihood tree:       nematoda_sim_1_tree.treefile
+  Likelihood distances:          nematoda_sim_1_tree.mldist
+  Screen log file:               nematoda_sim_1_tree.log
+
+Date and Time: Mon Aug 10 06:18:35 2026

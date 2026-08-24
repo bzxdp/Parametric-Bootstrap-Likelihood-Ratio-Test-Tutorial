@@ -1,0 +1,167 @@
+IQ-TREE 3.1.2 built May 17 2026
+
+Input file name: nematoda_sim_2.fa
+Type of analysis: tree reconstruction
+Random seed number: 619519
+
+REFERENCES
+----------
+
+To cite IQ-TREE 3 please use:
+
+Thomas K.F. Wong, Nhan Ly-Trong, Huaiyan Ren, Hector Banos, Andrew J. Roger,
+Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman, Matthew W. Hahn,
+Gavin Huttley, Robert Lanfear, Bui Quang Minh (2025)
+IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
+Submitted.
+
+Since you used site-specific frequency model please also cite: 
+
+Huai-Chun Wang, Edward Susko, Bui Quang Minh, and Andrew J. Roger (2018)
+Modeling site heterogeneity with posterior mean site frequency profiles
+accelerates accurate phylogenomic estimation. Syst. Biol., 67:216–235.
+https://doi.org/10.1093/sysbio/syx068
+
+SEQUENCE ALIGNMENT
+------------------
+
+NOTE: Alignment sequence type is auto-detected. If in doubt, specify it via -st option.
+Input data: 37 sequences with 35371 amino-acid sites
+Number of constant sites: 9785 (= 27.6639% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 9785 (= 27.6639% of all sites)
+Number of parsimony informative sites: 20762
+Number of distinct site patterns: 35370
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: Poisson+SSF+F+G4
+
+State frequencies: (site specific frequencies)
+
+Model of rate heterogeneity: Gamma with 4 categories
+Gamma shape alpha: 0.3708
+
+ Category  Relative_rate  Proportion
+  1         0.0127         0.2500
+  2         0.1596         0.2500
+  3         0.6976         0.2500
+  4         3.1300         0.2500
+Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -873044.9642 (s.e. 3771.1282)
+Unconstrained log-likelihood (without tree): -370462.0014
+Number of free parameters (#branches + #model parameters): 91
+Akaike information criterion (AIC) score: 1746271.9285
+Corrected Akaike information criterion (AICc) score: 1746272.4031
+Bayesian information criterion (BIC) score: 1747043.0304
+
+Total tree length (sum of branch lengths): 5.0402
+Sum of internal branch lengths: 1.4114 (28.0034% of tree length)
+
+NOTE: Tree is UNROOTED although outgroup taxon 'Caenorhabd' is drawn at root
+
++--Caenorhabd
+|
++--C0briggsae
+|
+|   +--Ancylostom
++---|
+    |  +-----Pristionch
+    +--|
+       |     +---Brugia_mal
+       |  +--|
+       |  |  +--Ascaris0su
+       +--|
+          |          +-----Meloidogyn
+          |     +----|
+          |     |    +----Heteroderi
+          |  +--|
+          |  |  +-----------Strongyloi
+          +--|
+             |    +--------------Trichoceph
+             +----|
+                  |                     +---Coleoptera
+                  |                  +--|
+                  |                  |  +---Apis0melli
+                  |               +--|
+                  |               |  |  +--Siphonapte
+                  |               |  +--|
+                  |               |     +----Bombyx0mor
+                  |            +--|
+                  |            |  |     +--Drosophila
+                  |            |  |  +--|
+                  |            |  |  |  +--Glossina0m
+                  |            |  +--|
+                  |            |     +----Anopheles0
+                  |         +--|
+                  |         |  +-------Hemiptera0
+                  |      +--|
+                  |      |  +----------Crustacea0
+                  |   +--|
+                  |   |  +-------Chelicerat
+                  +---|
+                      |     +--------Echinoderm
+                      |  +--|
+                      |  |  |  +-------Cephalocho
+                      |  |  +--|
+                      |  |     |  +----------Urochordat
+                      |  |     +--|
+                      |  |        |   +--Mammalia00
+                      |  |        +---|
+                      |  |            +--Actinopter
+                      +--|
+                         |                                 +--Neurospora
+                         |                              +--|
+                         |                              |  +---Magnaporth
+                         |                           +--|
+                         |                           |  +---Gibberella
+                         |                      +----|
+                         |                      |    +----Eurotiomyc
+                         |                   +--|
+                         |                   |  |       +------Candida0al
+                         |                   |  +-------|
+                         |                   |          +-------Saccharomy
+                         |                +--|
+                         |                |  +------------Schizosacc
+                         |             +--|
+                         |             |  |   +----------Ustilago0m
+                         |             |  +---|
+                         |             |      |  +------Homobasidi
+                         |             |      +--|
+                         |             |         +----------Cryptococc
+                         |          +--|
+                         |          |  +---------Glomales00
+                         +----------|
+                                    +-------------Chytridiom
+
+Tree in newick format:
+
+(Caenorhabd:0.0158498076,C0briggsae:0.0114387417,(Ancylostom:0.0565389223,(Pristionch:0.0979777265,((Brugia_mal:0.0594958411,Ascaris0su:0.0391593873):0.0405665119,(((Meloidogyn:0.0978188115,Heteroderi:0.0774544918):0.0773078716,Strongyloi:0.1801994956):0.0222306620,(Trichoceph:0.2181361762,(((((((Coleoptera:0.0653982280,Apis0melli:0.0647494942):0.0137018942,(Siphonapte:0.0466770022,Bombyx0mor:0.0755268651):0.0116711370):0.0136525860,((Drosophila:0.0384941091,Glossina0m:0.0434601225):0.0447077737,Anopheles0:0.0758086680):0.0327989088):0.0123998637,Hemiptera0:0.1235737591):0.0296479704,Crustacea0:0.1636402547):0.0186015554,Chelicerat:0.1178010235):0.0171933439,((Echinoderm:0.1389322885,(Cephalocho:0.1144097331,(Urochordat:0.1593410644,(Mammalia00:0.0310560047,Actinopter:0.0384654232):0.0668095513):0.0121643992):0.0109988537):0.0201213857,((((((((Neurospora:0.0564734954,Magnaporth:0.0635508717):0.0192684018,Gibberella:0.0704883125):0.0420244669,Eurotiomyc:0.0820194546):0.0850934391,(Candida0al:0.1024910707,Saccharomy:0.1230523085):0.1170809915):0.0383136016,Schizosacc:0.1919107058):0.0410801259,(Ustilago0m:0.1571631952,(Homobasidi:0.1138640151,Cryptococc:0.1589469125):0.0304134218):0.0585381055):0.0341701096,Glomales00:0.1442352482):0.0232612850,Chytridiom:0.2131561732):0.1641049505):0.0166837653):0.0690524842):0.0800154321):0.0205538308):0.0261806016):0.0391967234):0.0618142367);
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t nematoda_sim_2_pmsf_.treefile -m "Poisson+SSF{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}+F{0.0919372,0.0612105,0.0375914,0.0443692,0.0159621,0.0396004,0.0548192,0.0650336,0.0246687,0.0665383,0.0918783,0.0617684,0.0273481,0.0346282,0.0352836,0.0685366,0.0578231,0.00801165,0.0312473,0.0817442}+G4{0.370796}" --length 35371
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s nematoda_sim_2.fa --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s nematoda_sim_2.fa --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Mon Aug 10 10:12:02 2026
+Total CPU time used: 61471.6 seconds (17h:4m:31s)
+Total wall-clock time used: 1981.27 seconds (0h:33m:1s)
+
