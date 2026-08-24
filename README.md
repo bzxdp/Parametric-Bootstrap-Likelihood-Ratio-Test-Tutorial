@@ -2,19 +2,36 @@
 
 A worked, fully-reproducible tutorial for running the **Goldman (1993)
 parametric-bootstrap likelihood-ratio test** to compare the fit of a
-site-homogeneous-mixture model (**LG+F+G+C60**) against a **CAT-PMSF**
-model on a real phylogenomic alignment.
+site-heterogeneous-mixture model with a fixed number of categories
+(**LG+F+G+C60**) against a **CAT-PMSF** model on a real phylogenomic
+alignment.
 
 Every command below was actually run to produce the files checked into this
 repository — this is not pseudocode. The worked example uses the classic
-**37-taxon, 35,371-site nematode alignment** (Philippe et al. 2005a,
-refined by Lartillot et al. 2007), a well-known long-branch-attraction (LBA)
-test case for the placement of Nematoda within Ecdysozoa. The same protocol
-(applied there to a larger lophotrochozoan/brachiopod dataset, comparing
-LG+F+G, LG+F+G+C60, and CAT-PMSF three ways) underlies Fig. 3 of our
-companion phylogenomics manuscript; this repo isolates the **two-model
-comparison — LG+F+G+C60 (null) vs. CAT-PMSF (alternative)** — as a compact,
-self-contained example anyone can rerun end to end.
+**37-taxon, 35,371-site Nematoda alignment** — one of the classic datasets
+over which the CAT-PMSF pipeline was originally tested (Szánthó et al.
+2023) — a well-known long-branch-attraction (LBA) test case for the
+placement of Nematoda within Ecdysozoa. This approach can be used to
+compare as many models as necessary; however, this repo isolates a
+**two-model comparison — LG+F+G+C60 (null) vs. CAT-PMSF (alternative)** —
+as a compact, self-contained example anyone can rerun end to end.
+
+We implemented this approach in Yang et al. (in press) *A Comprehensive
+Phylogenomic Framework for Brachiopod Evolution among Lophotrochozoans*,
+Science Advances. The full citation will be added when the paper is
+published. You will be able to use the results of Yang et al. (in press)
+as a second example illustrating how the approach generalises.
+
+This test **supersedes the property-specific parametric-bootstrap test we
+introduced in Giacomelli et al. (2024)**. That earlier test assessed model
+fit one data-property at a time (e.g. compositional heterogeneity, amino-
+acid diversity), which is informative but inherently one-dimensional and
+does not guarantee that a model favoured on one property is the
+better-fitting model overall. The Goldman-style test implemented here
+evaluates overall likelihood-based fit directly, sidesteps that
+limitation, and should now be preferred (see §1 for why the same logic
+also lets it stand in for AIC-based comparisons, which cannot be applied
+to CAT-PMSF).
 
 **Result on the nematode dataset:** CAT-PMSF fits significantly better than
 LG+F+G+C60 (p = 0.0099, the smallest value estimable from 100 bootstrap
@@ -30,17 +47,39 @@ dataset, purely because it has more free parameters. The question the
 Goldman test answers is: **could that improvement have arisen by chance,
 even if the simpler model were the true generating process?**
 
-The logic (Goldman 1993; parametric-bootstrap LRT framework as applied to
-PMSF-type models by Wang et al.):
+The motivation for using a Goldman (1993)-based parametric-bootstrap
+likelihood-ratio test is that it is not possible to cleanly enumerate the
+number of parameters used by PMSF-based models, which precludes the use of
+information-criterion-based relative model-fit tests such as the AIC. The
+use of a parametric-bootstrap likelihood-ratio test instead was originally
+proposed by Wang et al. (2018).
+
+The logic (parametric-bootstrap LRT framework as applied to PMSF-type
+models by Wang et al. 2018):
 
 1. Fit both models to the real data and record the difference in
    log-likelihood: `ΔlnL_real = lnL(CAT-PMSF) − lnL(LG+F+G+C60)`.
 2. Treat the **simpler** model (LG+F+G+C60) as the null model. Simulate
    `N` replicate alignments of the same size under this null model and its
    ML tree (parametric bootstrap).
-3. Re-fit **both** models to every simulated replicate and record
-   `ΔlnL_sim,i = lnL(CAT-PMSF, frozen) − lnL(LG+F+G+C60, re-estimated)`
+3. For every simulated replicate, fit LG+F+G+C60 from scratch (full tree
+   search, branch lengths, C60 weights, and gamma shape all re-estimated),
+   and separately score the same replicate under the **frozen CAT-PMSF
+   model estimated from the real data** — record
+   `ΔlnL_sim,i = lnL(CAT-PMSF, frozen model estimated from the real data) − lnL(LG+F+G+C60, re-estimated)`
    for each replicate `i`.
+
+   **"Frozen" here means the CAT-PMSF *model* — the per-site amino-acid
+   frequency profiles in `nema2.sitefreq`, estimated once from the real
+   data in Step 3 — is reused as-is for every replicate. You do *not*
+   rebuild a new PMSF model (i.e. rerun PhyloBayes CAT + `readpb_mpi` +
+   `convert-site-dists.py`) for each of the 100 simulated replicates —
+   that would be circular (the profiles would be fit to the very data
+   being tested) and computationally infeasible (each PhyloBayes chain
+   alone takes hours–days). What *is* still fit per replicate, for both
+   models, is a completely ordinary IQ-TREE ML search — tree topology,
+   branch lengths, and gamma shape are all re-optimized for that
+   replicate under the frozen profile; see the log excerpt in §7.2.**
 4. Because the simulated replicates were generated under the null model,
    the distribution of `ΔlnL_sim` shows how much of an apparent advantage
    the richer model can gain **purely from chance / extra parameters**,
@@ -60,31 +99,42 @@ PMSF-type models by Wang et al.):
 CAT-PMSF is used as the alternative model, rather than plain PhyloBayes
 CAT, because CAT-based models don't have a well-defined, enumerable number
 of free parameters (they're inferred as posterior-mean site-frequency
-profiles from an MCMC sample), which rules out information criteria such as
-AIC. The parametric-bootstrap LRT sidesteps that problem entirely — it
-never needs to count parameters — which is precisely why it's the
-appropriate test here.
+profiles from an MCMC sample), which rules out AIC. The parametric-
+bootstrap LRT sidesteps that problem entirely — it never needs to count
+parameters — which is precisely why it's the appropriate test here.
 
 ---
 
 ## 2. Repository layout
 
 ```
-data/                     nematode alignment (Philippe et al. 2005a / Lartillot et al. 2007)
-01_ml_tree/                Step 1: site-homogeneous ML tree under LG+F+G+C60
-02_phylobayes_cat/          Step 2: PhyloBayes CAT-Poisson MCMC + posterior mean site frequencies
-03_pmsf_fit/                 Step 3: CAT-PMSF fit on the real data
-04_goldman_test/              Step 4: AliSim simulation + refits + the Goldman test itself
-  ├─ run_ALISIMlgC60.sh        command used to simulate 100 replicates under the null model
-  ├─ scripts/                  refit_LGC60.sh, refit_PMSF.sh, compute_goldman_pvalue.py
-  ├─ example_simulated_data/   3 example simulated alignments + their real fits (full set is 100; see §6)
-  ├─ simulated_fits/           the .iqtree summary output for ALL 100 replicates, both models
-  └─ results/                  nematode_goldman_deltas.csv, goldman_test_nematode.png
+data/                          Nematoda.phy — the nematode alignment (Szánthó et al. 2023 dataset)
+01_ml_tree/                     Step 1: site-homogeneous-mixture ML tree under LG+F+G+C60
+02_phylobayes_cat/                Step 2: PhyloBayes CAT-Poisson MCMC + posterior mean site frequencies
+03_pmsf_fit/                       Step 3: CAT-PMSF fit on the real data
+04_goldman_test/                     Step 4: AliSim simulation + refits + the Goldman test itself
+  ├─ run_ALISIMlgC60.sh                command used to simulate 100 replicates under the null model
+  ├─ scripts/                          refit_LGC60.sh, refit_PMSF.sh, compute_goldman_pvalue.py
+  ├─ example_simulated_data/           3 example simulated alignments + their real fits (full set is 100; see §7.1)
+  ├─ simulated_fits/                   the .iqtree summary output for ALL 100 replicates, both models
+  └─ results/                          nematode_goldman_deltas.csv, goldman_test_nematode.png
 ```
 
 Every `output/` and `results/` subfolder contains **real output files**
 from the actual run, not placeholders — open any `.iqtree` file to see the
 full model, tree, and likelihood report IQ-TREE produced.
+
+> **A note on file names.** The alignment is shipped in this repo as
+> `data/Nematoda.phy`. In the raw IQ-TREE/PhyloBayes log and report files
+> checked in under `01_ml_tree/output/`, `02_phylobayes_cat/`, and
+> `03_pmsf_fit/output/`, you will see the alignment referred to internally
+> as `nematode2.phy` — this is simply the literal filename that was on
+> disk when those commands were actually run (the dataset had been
+> downloaded twice during the original analysis, and the duplicate name
+> was never cleaned up before the runs). It is the same alignment as
+> `data/Nematoda.phy`; we've renamed the shipped data file and the scripts
+> in this repo, but did not rewrite the historical log content, since that
+> would misrepresent what was actually run.
 
 ---
 
@@ -110,21 +160,21 @@ cluster.
 
 ---
 
-## 4. Step 1 — Site-homogeneous-mixture ML tree (LG+F+G+C60)
+## 4. Step 1 — Site-heterogeneous-mixture ML tree (LG+F+G+C60)
 
 ```bash
 cd 01_ml_tree
-iqtree3 -s ../data/nematode2.phy -m LG+F+G+C60 -nt 16
+iqtree3 -s ../data/Nematoda.phy -m LG+F+G+C60 -nt 16
 ```
 
 This both (a) gives the ML tree and branch lengths used as the fixed guide
 topology for the PhyloBayes CAT run in Step 2, and (b) *is* the null model
 used later in the Goldman test — its outputs
-(`output/nematode2.phy.{iqtree,log,treefile,bionj,mldist}`) are the "real
+(`output/Nematoda.phy.{iqtree,log,treefile,bionj,mldist}`) are the "real
 data, LG+F+G+C60" fit referenced throughout.
 
 **Real result:** `Log-likelihood of the tree: -712617.3131`
-(`output/nematode2.phy.iqtree`), gamma shape α = 0.5408.
+(`output/Nematoda.phy.iqtree`), gamma shape α = 0.5408.
 
 ---
 
@@ -138,13 +188,15 @@ converged).
 
 ```bash
 cd 02_phylobayes_cat
-pb_mpi -d ../data/nematode2.phy -T ../01_ml_tree/output/nematode2.phy.treefile -nmax 15000 -poisson -cat -f nema1
-pb_mpi -d ../data/nematode2.phy -T ../01_ml_tree/output/nematode2.phy.treefile -nmax 15000 -poisson -cat -f nema2
+pb_mpi -d ../data/Nematoda.phy -T ../01_ml_tree/output/Nematoda.phy.treefile -nmax 15000 -poisson -cat -f nema1
+pb_mpi -d ../data/Nematoda.phy -T ../01_ml_tree/output/Nematoda.phy.treefile -nmax 15000 -poisson -cat -f nema2
 ```
 
 (`run_cat.sh` shows this launched under SLURM/MPI with `srun -n 96`; adjust
 to your own scheduler. `-poisson -cat` is the CAT-Poisson model; `-nmax`
-caps the run at 15,000 cycles.)
+caps the run at 15,000 cycles. The chain-name prefixes `nema1`/`nema2` are
+just short labels for "Nematoda" chosen at launch time — they are
+independent of the alignment's file name.)
 
 ### 5.2 Check convergence
 
@@ -170,6 +222,10 @@ All parameters pass both thresholds.
 
 ### 5.3 Extract posterior-mean site-specific profiles
 
+Note we have arbitrarily chosen chain `nema2` here — as convergence has
+already been reached between the two chains, the choice of which chain to
+extract profiles from is irrelevant.
+
 ```bash
 readpb_mpi -x 6000 67 12755 -ss nema2
 ```
@@ -193,7 +249,8 @@ python3 convert-site-dists.py nema2.siteprofiles
 
 `convert-site-dists.py` (included here) just re-orders PhyloBayes's
 amino-acid column order into IQ-TREE's and renormalizes each site's
-frequency vector.
+frequency vector. `nema2.sitefreq` is the CAT-PMSF *model* itself — this
+is the file that gets frozen and reused, unmodified, throughout Step 4.
 
 ---
 
@@ -201,7 +258,7 @@ frequency vector.
 
 ```bash
 cd 03_pmsf_fit
-iqtree -s ../data/nematode2.phy -m Poisson+G4 -fs ../02_phylobayes_cat/nema2.sitefreq -nt 32 -pre CAT_pmsf_
+iqtree -s ../data/Nematoda.phy -m Poisson+G4 -fs ../02_phylobayes_cat/nema2.sitefreq -nt 32 -pre CAT_pmsf_
 ```
 
 `-fs nema2.sitefreq` tells IQ-TREE to use a per-site empirical frequency
@@ -215,6 +272,10 @@ model.
 −712,617.31 on the same 37×35,371 alignment (`output/nema2.sitefreq`, 7.7 MB,
 is included so you can rerun this step or Step 4 without redoing Step 2).
 
+This fit — tree, branch lengths, and above all `nema2.sitefreq` — is the
+**frozen PMSF model estimated from the real data** referenced throughout
+Step 4.
+
 ---
 
 ## 7. Step 4 — The Goldman test itself
@@ -224,9 +285,9 @@ is included so you can rerun this step or Step 4 without redoing Step 2).
 ```bash
 cd 04_goldman_test
 iqtree3 --alisim nematoda_sim \
-    -s ../data/nematode2.phy \
+    -s ../data/Nematoda.phy \
     -m LG+C60+F+G4{0.5408} \
-    -te ../01_ml_tree/output/nematode2.phy.treefile \
+    -te ../01_ml_tree/output/Nematoda.phy.treefile \
     --site-freq SAMPLING \
     --site-rate SAMPLING \
     --length 35371 \
@@ -255,17 +316,49 @@ included in `example_simulated_data/`; regenerate all 100 with the command
 above (deterministic given `-seed 42`) rather than storing ~130 MB of
 alignments in this repo.
 
-### 7.2 Re-fit every replicate under both models
+### 7.2 Re-fit each replicate under LG+F+G+C60; score each replicate under the frozen PMSF model estimated from the real data
 
 ```bash
-# Null model, all parameters free (topology, branch lengths, C60 weights, gamma shape)
+# Null model: everything free (topology, branch lengths, C60 weights, gamma shape)
 ./scripts/refit_LGC60.sh <path-to-100-fastas> simulated_fits/LGC60 32
 
-# Alternative model, frozen site-frequency profiles from the REAL-data PMSF fit
+# Frozen PMSF model estimated from the real data: reuse nema2.sitefreq (Step 3) as-is
 ./scripts/refit_PMSF.sh <path-to-100-fastas> ../03_pmsf_fit/output/nema2.sitefreq simulated_fits/PMSF 32
 ```
 
-These wrap the exact commands recorded in the real run logs, e.g.
+**"Frozen" applies to the CAT-PMSF *model* — i.e. the per-site
+amino-acid frequency profiles in `nema2.sitefreq`, estimated once from the
+real data in Step 3.** Do **not** rebuild a new PMSF model (rerun
+PhyloBayes CAT + `readpb_mpi` + `convert-site-dists.py`) for each of the
+100 replicates: that would fit the profiles to the very data being tested
+(circular), and is computationally infeasible anyway — each PhyloBayes
+chain alone runs for hours to days, and Step 2 is deliberately done
+exactly once, on the real data. The same `nema2.sitefreq` file is simply
+handed to IQ-TREE via `-fs` for every one of the 100 replicates.
+
+What *is* still fit per replicate, for both models, is a completely
+ordinary IQ-TREE ML search — tree topology, branch lengths, and gamma
+shape are all re-optimized for that replicate. The real log for replicate
+1 under the frozen PMSF model shows exactly this (from
+`simulated_fits/PMSF/` — only the small `.iqtree` summaries are checked in;
+this excerpt is from the corresponding full `.log`):
+
+```
+Generating 98 parsimony trees...
+Do NNI search on 20 best initial trees
+BETTER TREE FOUND at iteration 1: -869932.242
+Iteration 100 / LogL: -869933.143
+TREE SEARCH COMPLETED AFTER 102 ITERATIONS / Time: 0h:32m:37s
+Optimal log-likelihood: -869932.241
+Gamma shape alpha: 0.367
+```
+
+Note the resulting tree and branch lengths differ from replicate to
+replicate, and the gamma shape (0.367 here) differs both from replicate to
+replicate and from the real-data PMSF fit (0.5408 estimated in Step 1) —
+only the site-frequency profiles themselves are held fixed.
+
+Both refit commands wrap the exact commands recorded in the real run logs, e.g.
 (`simulated_fits/LGC60/nematoda_sim_1_tree.iqtree`, header):
 
 ```
@@ -287,7 +380,7 @@ commands (fasta alignments themselves are not stored — see §7.1).
 ```bash
 cd scripts
 python3 compute_goldman_pvalue.py \
-    --lgc60-real  ../../01_ml_tree/output/nematode2.phy.iqtree \
+    --lgc60-real  ../../01_ml_tree/output/Nematoda.phy.iqtree \
     --pmsf-real   ../../03_pmsf_fit/output/CAT_pmsf_.iqtree \
     --lgc60-sim-dir ../simulated_fits/LGC60 \
     --pmsf-sim-dir  ../simulated_fits/PMSF \
@@ -314,9 +407,10 @@ Goldman parametric-bootstrap p-value = (r+1)/(N+1) = 0.00990099
 None of the 100 bootstrap replicates simulated under LG+F+G+C60 came
 anywhere close to the ΔlnL observed on the real data (simulated ΔlnL ranges
 from about −154,800 to −148,100, all *negative* — meaning on data actually
-generated by LG+F+G+C60, PMSF's frozen empirical profiles fit *worse*, as
-expected — versus +152,801 on the real alignment). With r = 0 of N = 100,
-p = 0.0099, the smallest p-value obtainable from 100 replicates.
+generated by LG+F+G+C60, the frozen PMSF model estimated from the real
+data fits *worse*, as expected — versus +152,801 on the real alignment).
+With r = 0 of N = 100, p = 0.0099, the smallest p-value obtainable from 100
+replicates.
 
 **Interpretation:** LG+F+G+C60 cannot explain the real nematode data even
 approximately as well as CAT-PMSF does, and this gap is far too large to be
@@ -331,7 +425,7 @@ to 999 for p as small as 0.001) — the smallest resolvable p-value is always
 
 ## 9. Running this on your own dataset
 
-1. Replace `data/nematode2.phy` with your alignment (any format IQ-TREE
+1. Replace `data/Nematoda.phy` with your alignment (any format IQ-TREE
    reads: phylip, fasta, nexus, clustal...).
 2. Repeat Steps 1–3 unchanged (swap in your alignment path).
 3. In Step 4.1, set `-m LG+C60+F+G4{<your alpha>}` from your own Step-1
@@ -351,11 +445,40 @@ way — see `compute_goldman_pvalue.py --help` for the generic interface.
 
 - Goldman N. (1993). Statistical tests of models of DNA substitution.
   *Journal of Molecular Evolution* 36:182–198.
-- Wang H.-C., Susko E., Roger A.J. Posterior mean site frequency profiles
-  (PMSF) accelerate accurate phylogenomic estimation under a
-  site-heterogeneous CAT-like model. (PMSF/CAT-PMSF method.)
-- Philippe H. et al. (2005). Op. cit., nematode/Ecdysozoa dataset.
-- Lartillot N. et al. (2007). Refined version of the nematode dataset used
-  here.
-- Minh B.Q. et al. IQ-TREE 2/3 and AliSim (`--alisim`).
-- Lartillot N., Philippe H. PhyloBayes MPI (`pb_mpi`/`readpb_mpi`).
+- Wang H.-C., Minh B.Q., Susko E., Roger A.J. (2018). Modeling Site
+  Heterogeneity with Posterior Mean Site Frequency Profiles Accelerates
+  Accurate Phylogenomic Estimation. *Systematic Biology* 67(2):216–235.
+  https://doi.org/10.1093/sysbio/syx068 — introduces PMSF and originally
+  proposes the parametric-bootstrap LRT framework used here.
+- Giacomelli M., Vecchi M., Guidetti R., Rebecchi L., Donoghue P.C.J.,
+  Lozano-Fernandez J., Pisani D. (2024). CAT-Posterior Mean Site
+  Frequencies Improves Phylogenetic Modeling Under Maximum Likelihood and
+  Resolves Tardigrada as the Sister of Arthropoda Plus Onychophora.
+  *Genome Biology and Evolution* 17(1):evae273.
+  https://doi.org/10.1093/gbe/evae273 (published online Dec. 2024; print
+  volume 2025) — introduced a property-specific parametric-bootstrap
+  goodness-of-fit test for CAT-PMSF. **The Goldman-style test implemented
+  in this repository supersedes that earlier test** (see §1).
+- Szánthó L.L., Lartillot N., Szöllősi G.J., Schrempf D. (2023).
+  Compositionally Constrained Sites Drive Long-Branch Attraction.
+  *Systematic Biology* 72(4):767–780.
+  https://doi.org/10.1093/sysbio/syad013 — introduced the CAT-PMSF
+  pipeline used in Steps 1–3 below and the 37-taxon Nematoda dataset used
+  as this tutorial's worked example.
+- Yang M., Butler A., López Carranza N., Vinther J., Whittle R., Henkel
+  D., Jurikova H., Wörheide G., Giacomelli M., Donoghue P.C.J., Pisani D.,
+  Carlson S.J., Sperling E.A. (in press). A Comprehensive Phylogenomic
+  Framework for Brachiopod Evolution among Lophotrochozoans. *Science
+  Advances*. Full citation to be added on publication — applies this exact
+  Goldman-test protocol to a real empirical case (brachiopod/
+  lophotrochozoan phylogenomics).
+- Minh B.Q., Schmidt H.A., Chernomor O., Schrempf D., Woodhams M.D., von
+  Haeseler A., Lanfear R. (2020). IQ-TREE 2: New Models and Efficient
+  Methods for Phylogenetic Inference in the Genomic Era. *Molecular
+  Biology and Evolution* 37:1530–1534.
+- Ly-Trong N., Naser-Khdour S., Lanfear R., Minh B.Q. (2022). AliSim: A
+  Fast and Versatile Phylogenetic Sequence Simulator for the Genomic Era.
+  *Molecular Biology and Evolution* 39(5):msac092.
+- Lartillot N., Rodrigue N., Stubbs D., Richer J. (2013). PhyloBayes MPI:
+  Phylogenetic Reconstruction with Infinite Mixtures of Profiles in a
+  Parallel Environment. *Systematic Biology* 62(4):611–615.

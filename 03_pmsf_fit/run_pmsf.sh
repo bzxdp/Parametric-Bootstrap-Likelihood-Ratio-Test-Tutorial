@@ -12,4 +12,5 @@ conda activate /projects/b56o/conda/envs/phylodev
 
 cd $SLURM_SUBMIT_DIR
 
-iqtree  -s nematode2.phy  -m Poisson+G4 -fs nema2.sitefreq   -nt 32 -pre CAT_pmsf_
+# Alignment file: Nematoda.phy (see ../data/Nematoda.phy in this repo).
+iqtree  -s Nematoda.phy  -m Poisson+G4 -fs nema2.sitefreq   -nt 32 -pre CAT_pmsf_
