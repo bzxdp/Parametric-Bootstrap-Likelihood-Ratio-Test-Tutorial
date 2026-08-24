@@ -470,7 +470,8 @@ way — see `compute_goldman_pvalue.py --help` for the generic interface.
   Framework for Brachiopod Evolution among Lophotrochozoans. *Science
   Advances*. Full citation to be added on publication — applies this exact
   Goldman-test protocol to a real empirical case (brachiopod/
-  lophotrochozoan phylogenomics).
+  lophotrochozoan phylogenomics). The paper itself will be published under
+  a CC-BY 4.0 license.
 - Minh B.Q., Schmidt H.A., Chernomor O., Schrempf D., Woodhams M.D., von
   Haeseler A., Lanfear R. (2020). IQ-TREE 2: New Models and Efficient
   Methods for Phylogenetic Inference in the Genomic Era. *Molecular
@@ -481,3 +482,17 @@ way — see `compute_goldman_pvalue.py --help` for the generic interface.
 - Lartillot N., Rodrigue N., Stubbs D., Richer J. (2013). PhyloBayes MPI:
   Phylogenetic Reconstruction with Infinite Mixtures of Profiles in a
   Parallel Environment. *Systematic Biology* 62(4):611–615.
+
+---
+
+## 11. License
+
+The code, scripts, and documentation in this repository (everything
+outside the raw IQ-TREE/PhyloBayes output files, which are data) are
+released under the [MIT License](LICENSE).
+
+The companion manuscript (Yang et al., in press, *Science Advances*, §10)
+will be published under a **CC-BY 4.0** license — separate from, and not
+affected by, this repository's MIT license. The nematode alignment itself
+originates from the CAT-PMSF pipeline described in Szánthó et al. (2023);
+if you reuse the dataset, please cite that paper as its source (see §10).
