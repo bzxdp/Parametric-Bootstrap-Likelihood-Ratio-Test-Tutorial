@@ -1,24 +1,23 @@
-# Goldman parametric-bootstrap test: LG+C60 vs. CAT-PMSF
+# Parametric-bootstrap test: LG+C60 vs. CAT-PMSF
 
-A worked, fully-reproducible tutorial for running the **Goldman (1993)
-parametric-bootstrap likelihood-ratio test** to compare the fit of a
-site-heterogeneous-mixture model with a fixed number of categories
-(**LG+F+G+C60**) against a **CAT-PMSF** model on a real phylogenomic
-alignment.
+A worked, fully-reproducible tutorial for running a **Parametric-bootstrap 
+likelihood-ratio test** to compare the fit of a site-heterogeneous-mixture 
+model with a fixed number of categories (**LG+F+G+C60**) against a **CAT-PMSF** 
+model on a real phylogenomic alignment.
 
 Every command below was actually run to produce the files checked into this
-repository — this is not pseudocode. The worked example uses the classic
-**37-taxon, 35,371-site Nematoda alignment** — one of the classic datasets
-over which the CAT-PMSF pipeline was originally tested (Szánthó et al.
-2023) — a well-known long-branch-attraction (LBA) test case for the
-placement of Nematoda within Ecdysozoa. This approach can be used to
-compare as many models as necessary; however, this repo isolates a
-**two-model comparison — LG+F+G+C60 (null) vs. CAT-PMSF (alternative)** —
-as a compact, self-contained example anyone can rerun end to end.
+repository — this is not pseudocode. The worked example uses the original
+**37-taxon, 35,371-site Nematoda alignment** — over which the CAT-PMSF 
+pipeline was originally tested (Szánthó et al. 2023) — a well-known 
+long-branch-attraction (LBA) test case for the placement of Nematoda 
+within Ecdysozoa. This approach can be used to compare as many models 
+as necessary; however, this repo isolates a **two-model comparison 
+— LG+F+G+C60 (null) vs. CAT-PMSF (alternative)** — as a compact, 
+self-contained example anyone can rerun end to end.
 
-We implemented this approach in Yang et al. (in press) *A Comprehensive
-Phylogenomic Framework for Brachiopod Evolution among Lophotrochozoans*,
-Science Advances. The full citation will be added when the paper is
+We implemented this approach in Yang et al. (in press) **A Comprehensive
+Phylogenomic Framework for Brachiopod Evolution among Lophotrochozoans**,
+Science Advances. The full citation and DOI will be added when the paper is
 published. You will be able to use the results of Yang et al. (in press)
 as a second example illustrating how the approach generalises.
 
@@ -27,9 +26,9 @@ introduced in Giacomelli et al. (2024)**. That earlier test assessed model
 fit one data-property at a time (e.g. compositional heterogeneity, amino-
 acid diversity), which is informative but inherently one-dimensional and
 does not guarantee that a model favoured on one property is the
-better-fitting model overall. The Goldman-style test implemented here
-evaluates overall likelihood-based fit directly, sidesteps that
-limitation, and should now be preferred (see §1 for why the same logic
+better-fitting model overall. The parametric bootstrap likelihood ratio 
+test implemented evaluates overall likelihood-based fit directly, sidesteps that
+limitation, and should be preferred (see §1 for why the same logic
 also lets it stand in for AIC-based comparisons, which cannot be applied
 to CAT-PMSF).
 
@@ -41,18 +40,30 @@ replicates — see [Results](#results)).
 
 ## 1. Background: what the test does and why
 
-Fitting a richer model (CAT-PMSF) will *always* produce a higher
-log-likelihood than a simpler, nested-in-spirit model (LG+F+G+C60) on any
+Fitting a richer model (here CAT-PMSF) is expected to produce a higher
+log-likelihood than a simpler, nested-in-spirit model (here LG+F+G+C60) on any
 dataset, purely because it has more free parameters. The question the
-Goldman test answers is: **could that improvement have arisen by chance,
-even if the simpler model were the true generating process?**
+parametric bootstrap likelihood ratio test answers is: **could that 
+improvement have arisen by chance, even if the simpler model were 
+the true generating process?**
 
-The motivation for using a Goldman (1993)-based parametric-bootstrap
-likelihood-ratio test is that it is not possible to cleanly enumerate the
-number of parameters used by PMSF-based models, which precludes the use of
-information-criterion-based relative model-fit tests such as the AIC. The
-use of a parametric-bootstrap likelihood-ratio test instead was originally
-proposed by Wang et al. (2018).
+The parametric-bootstrap likelihood-ratio test is based the procedure developed
+by Goldman (1993). The original Goldman (1993) test was a model adequacy test.
+However, the procedure has been adapted by Wang (2018) to develop a relative fit 
+test that does not rely on the number of parameters used (differently from 
+information criteria based methods such as the AIC) to compare the relative fit of
+two models to the data.  The motivation to use the parametric-bootstrap 
+likelihood-ratio test in comparisons of PMSF-based model is a consequence of the
+fact that it is not possible to precisely enumerate the number of parameters used by 
+these models (Wang et al. 2018), precluding therefore the use of 
+information-criterion-based, relative model-fit tests such as the AIC. 
+The parametric-bootstrap LRT sidesteps that problem entirely — it never needs to count
+parameters — which is precisely why it's the appropriate test here.
+
+Note: because the model is based on the framework first developed by Goldman (1993), 
+we below refer to the parametric-bootstrap likelihood ratio test also as the
+Goldman test.  However, this is not the same Goldman's test originally presented 
+by Goldman (1993) which was a model adequacy test, rather than a test of relative fit. 
 
 The logic (parametric-bootstrap LRT framework as applied to PMSF-type
 models by Wang et al. 2018):
@@ -66,6 +77,7 @@ models by Wang et al. 2018):
    search, branch lengths, C60 weights, and gamma shape all re-estimated),
    and separately score the same replicate under the **frozen CAT-PMSF
    model estimated from the real data** — record
+
    `ΔlnL_sim,i = lnL(CAT-PMSF, frozen model estimated from the real data) − lnL(LG+F+G+C60, re-estimated)`
    for each replicate `i`.
 
@@ -80,11 +92,12 @@ models by Wang et al. 2018):
    models, is a completely ordinary IQ-TREE ML search — tree topology,
    branch lengths, and gamma shape are all re-optimized for that
    replicate under the frozen profile; see the log excerpt in §7.2.**
-4. Because the simulated replicates were generated under the null model,
+   
+5. Because the simulated replicates were generated under the null model,
    the distribution of `ΔlnL_sim` shows how much of an apparent advantage
    the richer model can gain **purely from chance / extra parameters**,
    with no real additional structure in the data to exploit.
-5. Compare `ΔlnL_real` against that null distribution:
+6. Compare `ΔlnL_real` against that null distribution:
 
    ```
    r = number of replicates with ΔlnL_sim,i ≥ ΔlnL_real
@@ -95,13 +108,6 @@ models by Wang et al. 2018):
    something LG+F+G+C60 could produce by chance — i.e. CAT-PMSF is
    capturing genuine site-compositional heterogeneity that LG+F+G+C60 does
    not.
-
-CAT-PMSF is used as the alternative model, rather than plain PhyloBayes
-CAT, because CAT-based models don't have a well-defined, enumerable number
-of free parameters (they're inferred as posterior-mean site-frequency
-profiles from an MCMC sample), which rules out AIC. The parametric-
-bootstrap LRT sidesteps that problem entirely — it never needs to count
-parameters — which is precisely why it's the appropriate test here.
 
 ---
 
@@ -193,9 +199,10 @@ pb_mpi -d ../data/nematode2.phy -T ../01_ml_tree/output/nematode2.phy.treefile -
 
 (`run_cat.sh` shows this launched under SLURM/MPI with `srun -n 96`; adjust
 to your own scheduler. `-poisson -cat` is the CAT-Poisson model; `-nmax`
-caps the run at 15,000 cycles. The chain-name prefixes `nema1`/`nema2` are
-just short labels for "Nematoda" chosen at launch time — they are
-independent of the alignment's file name.)
+caps the number of categories that can be used to 15,000. The 
+chain-name prefixes `nema1`/`nema2` are just short labels for 
+"Nematoda" chosen at launch time — they are independent of the 
+alignment's file name.)
 
 ### 5.2 Check convergence
 
@@ -235,10 +242,6 @@ posterior samples averaged into the site profiles. `-ss` writes
 `nema2.siteprofiles` (one posterior-mean amino-acid frequency vector per
 alignment column).
 
-(`run_readpb_for_pmsf_RATE_RUN.sh` shows the analogous `-r` invocation for
-per-site rates, `nema2.meansiterates`, not required for PMSF itself but
-useful diagnostically.)
-
 ### 5.4 Convert to an IQ-TREE site-frequency file
 
 ```bash
@@ -277,7 +280,7 @@ Step 4.
 
 ---
 
-## 7. Step 4 — The Goldman test itself
+## 7. Step 4 — The Parametric Bootstrap Likelihood-Ratio (Goldman) test itself
 
 ### 7.1 Simulate 100 replicates under the null model (AliSim)
 
@@ -330,10 +333,9 @@ amino-acid frequency profiles in `nema2.sitefreq`, estimated once from the
 real data in Step 3.** Do **not** rebuild a new PMSF model (rerun
 PhyloBayes CAT + `readpb_mpi` + `convert-site-dists.py`) for each of the
 100 replicates: that would fit the profiles to the very data being tested
-(circular), and is computationally infeasible anyway — each PhyloBayes
-chain alone runs for hours to days, and Step 2 is deliberately done
-exactly once, on the real data. The same `nema2.sitefreq` file is simply
-handed to IQ-TREE via `-fs` for every one of the 100 replicates.
+(circular). Step 2 is deliberately done exactly once, on the real data. 
+The same `nema2.sitefreq` file is simply handed to IQ-TREE via `-fs` for 
+every one of the 100 replicates.
 
 What *is* still fit per replicate, for both models, is a completely
 ordinary IQ-TREE ML search — tree topology, branch lengths, and gamma
@@ -454,24 +456,17 @@ way — see `compute_goldman_pvalue.py --help` for the generic interface.
   Frequencies Improves Phylogenetic Modeling Under Maximum Likelihood and
   Resolves Tardigrada as the Sister of Arthropoda Plus Onychophora.
   *Genome Biology and Evolution* 17(1):evae273.
-  https://doi.org/10.1093/gbe/evae273 (published online Dec. 2024; print
-  volume 2025) — introduced a property-specific parametric-bootstrap
-  goodness-of-fit test for CAT-PMSF. **The Goldman-style test implemented
-  in this repository supersedes that earlier test** (see §1).
+  https://doi.org/10.1093/gbe/evae273.
 - Szánthó L.L., Lartillot N., Szöllősi G.J., Schrempf D. (2023).
   Compositionally Constrained Sites Drive Long-Branch Attraction.
-  *Systematic Biology* 72(4):767–780.
-  https://doi.org/10.1093/sysbio/syad013 — introduced the CAT-PMSF
-  pipeline used in Steps 1–3 below and the 37-taxon Nematoda dataset used
-  as this tutorial's worked example.
+  *Systematic Biology* 72(4):767–780. https://doi.org/10.1093/sysbio/syad013. 
 - Yang M., Butler A., López Carranza N., Vinther J., Whittle R., Henkel
   D., Jurikova H., Wörheide G., Giacomelli M., Donoghue P.C.J., Pisani D.,
   Carlson S.J., Sperling E.A. (in press). A Comprehensive Phylogenomic
   Framework for Brachiopod Evolution among Lophotrochozoans. *Science
   Advances*. Full citation to be added on publication — applies this exact
   Goldman-test protocol to a real empirical case (brachiopod/
-  lophotrochozoan phylogenomics). The paper itself will be published under
-  a CC-BY 4.0 license.
+  lophotrochozoan phylogenomics). 
 - Minh B.Q., Schmidt H.A., Chernomor O., Schrempf D., Woodhams M.D., von
   Haeseler A., Lanfear R. (2020). IQ-TREE 2: New Models and Efficient
   Methods for Phylogenetic Inference in the Genomic Era. *Molecular
