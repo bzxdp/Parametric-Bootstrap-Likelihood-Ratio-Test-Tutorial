@@ -11,11 +11,10 @@ cd $SLURM_SUBMIT_DIR
 source ~/miniforge3/etc/profile.d/conda.sh
 conda activate /projects/b56o/conda/envs/phylodev
 
-# Alignment file: Nematoda.phy (see ../data/Nematoda.phy in this repo).
 iqtree3 --alisim nematoda_sim \
-    -s Nematoda.phy \
+    -s nematode2.phy \
     -m LG+C60+F+G4{0.5408} \
-    -te Nematoda.phy.treefile \
+    -te nematode2.phy.treefile \
     --site-freq SAMPLING \
     --site-rate SAMPLING \
     --length 35371 \

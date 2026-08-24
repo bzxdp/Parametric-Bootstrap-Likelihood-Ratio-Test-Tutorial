@@ -108,7 +108,7 @@ parameters — which is precisely why it's the appropriate test here.
 ## 2. Repository layout
 
 ```
-data/                          Nematoda.phy — the nematode alignment (Szánthó et al. 2023 dataset)
+data/                          nematode2.phy — the nematode alignment (Szánthó et al. 2023 dataset)
 01_ml_tree/                     Step 1: site-homogeneous-mixture ML tree under LG+F+G+C60
 02_phylobayes_cat/                Step 2: PhyloBayes CAT-Poisson MCMC + posterior mean site frequencies
 03_pmsf_fit/                       Step 3: CAT-PMSF fit on the real data
@@ -124,17 +124,16 @@ Every `output/` and `results/` subfolder contains **real output files**
 from the actual run, not placeholders — open any `.iqtree` file to see the
 full model, tree, and likelihood report IQ-TREE produced.
 
-> **A note on file names.** The alignment is shipped in this repo as
-> `data/Nematoda.phy`. In the raw IQ-TREE/PhyloBayes log and report files
-> checked in under `01_ml_tree/output/`, `02_phylobayes_cat/`, and
-> `03_pmsf_fit/output/`, you will see the alignment referred to internally
-> as `nematode2.phy` — this is simply the literal filename that was on
-> disk when those commands were actually run (the dataset had been
-> downloaded twice during the original analysis, and the duplicate name
-> was never cleaned up before the runs). It is the same alignment as
-> `data/Nematoda.phy`; we've renamed the shipped data file and the scripts
-> in this repo, but did not rewrite the historical log content, since that
-> would misrepresent what was actually run.
+> **A note on file names.** Throughout this repo the alignment is named
+> `nematode2.phy` (in `data/`, in every script, and inside the raw
+> IQ-TREE/PhyloBayes log and report files). The trailing `2` is simply a
+> naming convention left over from how the file was labelled during the
+> original analysis — it does not indicate a second or different dataset;
+> `nematode2.phy` is the one and only 37-taxon, 35,371-site alignment
+> described throughout this README. We kept this name (rather than
+> renaming to something more descriptive) precisely so that every command
+> and every checked-in output file stays consistent with what was actually
+> run.
 
 ---
 
@@ -164,17 +163,17 @@ cluster.
 
 ```bash
 cd 01_ml_tree
-iqtree3 -s ../data/Nematoda.phy -m LG+F+G+C60 -nt 16
+iqtree3 -s ../data/nematode2.phy -m LG+F+G+C60 -nt 16
 ```
 
 This both (a) gives the ML tree and branch lengths used as the fixed guide
 topology for the PhyloBayes CAT run in Step 2, and (b) *is* the null model
 used later in the Goldman test — its outputs
-(`output/Nematoda.phy.{iqtree,log,treefile,bionj,mldist}`) are the "real
+(`output/nematode2.phy.{iqtree,log,treefile,bionj,mldist}`) are the "real
 data, LG+F+G+C60" fit referenced throughout.
 
 **Real result:** `Log-likelihood of the tree: -712617.3131`
-(`output/Nematoda.phy.iqtree`), gamma shape α = 0.5408.
+(`output/nematode2.phy.iqtree`), gamma shape α = 0.5408.
 
 ---
 
@@ -188,8 +187,8 @@ converged).
 
 ```bash
 cd 02_phylobayes_cat
-pb_mpi -d ../data/Nematoda.phy -T ../01_ml_tree/output/Nematoda.phy.treefile -nmax 15000 -poisson -cat -f nema1
-pb_mpi -d ../data/Nematoda.phy -T ../01_ml_tree/output/Nematoda.phy.treefile -nmax 15000 -poisson -cat -f nema2
+pb_mpi -d ../data/nematode2.phy -T ../01_ml_tree/output/nematode2.phy.treefile -nmax 15000 -poisson -cat -f nema1
+pb_mpi -d ../data/nematode2.phy -T ../01_ml_tree/output/nematode2.phy.treefile -nmax 15000 -poisson -cat -f nema2
 ```
 
 (`run_cat.sh` shows this launched under SLURM/MPI with `srun -n 96`; adjust
@@ -258,7 +257,7 @@ is the file that gets frozen and reused, unmodified, throughout Step 4.
 
 ```bash
 cd 03_pmsf_fit
-iqtree -s ../data/Nematoda.phy -m Poisson+G4 -fs ../02_phylobayes_cat/nema2.sitefreq -nt 32 -pre CAT_pmsf_
+iqtree -s ../data/nematode2.phy -m Poisson+G4 -fs ../02_phylobayes_cat/nema2.sitefreq -nt 32 -pre CAT_pmsf_
 ```
 
 `-fs nema2.sitefreq` tells IQ-TREE to use a per-site empirical frequency
@@ -285,9 +284,9 @@ Step 4.
 ```bash
 cd 04_goldman_test
 iqtree3 --alisim nematoda_sim \
-    -s ../data/Nematoda.phy \
+    -s ../data/nematode2.phy \
     -m LG+C60+F+G4{0.5408} \
-    -te ../01_ml_tree/output/Nematoda.phy.treefile \
+    -te ../01_ml_tree/output/nematode2.phy.treefile \
     --site-freq SAMPLING \
     --site-rate SAMPLING \
     --length 35371 \
@@ -380,7 +379,7 @@ commands (fasta alignments themselves are not stored — see §7.1).
 ```bash
 cd scripts
 python3 compute_goldman_pvalue.py \
-    --lgc60-real  ../../01_ml_tree/output/Nematoda.phy.iqtree \
+    --lgc60-real  ../../01_ml_tree/output/nematode2.phy.iqtree \
     --pmsf-real   ../../03_pmsf_fit/output/CAT_pmsf_.iqtree \
     --lgc60-sim-dir ../simulated_fits/LGC60 \
     --pmsf-sim-dir  ../simulated_fits/PMSF \
@@ -425,7 +424,7 @@ to 999 for p as small as 0.001) — the smallest resolvable p-value is always
 
 ## 9. Running this on your own dataset
 
-1. Replace `data/Nematoda.phy` with your alignment (any format IQ-TREE
+1. Replace `data/nematode2.phy` with your alignment (any format IQ-TREE
    reads: phylip, fasta, nexus, clustal...).
 2. Repeat Steps 1–3 unchanged (swap in your alignment path).
 3. In Step 4.1, set `-m LG+C60+F+G4{<your alpha>}` from your own Step-1

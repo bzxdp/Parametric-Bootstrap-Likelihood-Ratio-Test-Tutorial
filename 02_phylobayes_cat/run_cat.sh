@@ -16,5 +16,4 @@ export OMPI_MCA_btl=self,tcp
 cd $SLURM_SUBMIT_DIR
 
 
-# Alignment file: Nematoda.phy (see ../data/Nematoda.phy in this repo).
-srun -n 96 /projects/b56o/software/pbmpi-master/data/pb_mpi -d Nematoda.phy -T Nematoda.phy.treefile  -nmax 15000 -poisson -cat -f nema1
+srun -n 96 /projects/b56o/software/pbmpi-master/data/pb_mpi -d nematode2.phy -T nematode2.phy.treefile  -nmax 15000 -poisson -cat -f nema1

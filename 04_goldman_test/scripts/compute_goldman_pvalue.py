@@ -27,7 +27,7 @@ LG+F+G+C60 does not.
 
 Usage:
     python3 compute_goldman_pvalue.py \
-        --lgc60-real  ../../01_ml_tree/output/Nematoda.phy.iqtree \
+        --lgc60-real  ../../01_ml_tree/output/nematode2.phy.iqtree \
         --pmsf-real   ../../03_pmsf_fit/output/CAT_pmsf_.iqtree \
         --lgc60-sim-dir ../simulated_fits/LGC60 \
         --pmsf-sim-dir  ../simulated_fits/PMSF \
