@@ -478,20 +478,21 @@ way — see `compute_goldman_pvalue.py --help` for the generic interface.
   Phylogenetic Reconstruction with Infinite Mixtures of Profiles in a
   Parallel Environment. *Systematic Biology* 62(4):611–615.
 
-– **Acknowledgements**. The content and structure of this repo were designed using 
-  **ClaudeAI** to ensure a standard structure, clarity of the instructions and 
-  adherence to good practice. The actual work: from the design of the pipeline, to
-  its testing on the nematode dataset and its porting on the Brachiopod dataset of 
-  Yang et al. (in press), was entirely done by Davide Pisani, Mingzhu Yang 
-  and Mattia Giacomelli. 
-  
-  The authors would like to thank **Edward Susko** for his suggestion to implement Wang 
-  et al. (2018) Parametric Bootstrap Likelihood-Ratio Test as a mean to test PMSF
-  models against other models.
+  ---
+
+## 11. Acknowledgements 
+
+The content and structure of this repo were designed using **ClaudeAI** to 
+ensure a standard structure, clarity of the instructions and adherence to good practice. 
+The actual work: from the design of the pipeline, to its testing on the nematode dataset 
+and its porting on the Brachiopod dataset of Yang et al. (in press), was entirely done by 
+**Davide Pisani**, **Mingzhu Yang** and **Mattia Giacomelli**. The authors would like to 
+thank **Edward Susko** for his suggestion to implement Wang et al. (2018) Parametric 
+Bootstrap Likelihood-Ratio Test as a mean to test PMSF models against other models.
   
 ---
 
-## 11. License
+## 12. License
 
 The code, scripts, and documentation in this repository (everything
 outside the raw IQ-TREE/PhyloBayes output files, which are data) are
