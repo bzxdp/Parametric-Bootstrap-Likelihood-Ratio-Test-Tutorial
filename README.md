@@ -478,7 +478,7 @@ way — see `compute_goldman_pvalue.py --help` for the generic interface.
   Phylogenetic Reconstruction with Infinite Mixtures of Profiles in a
   Parallel Environment. *Systematic Biology* 62(4):611–615.
 
-  ---
+---
 
 ## 11. Acknowledgements 
 
